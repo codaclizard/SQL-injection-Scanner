@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Title</title>
+  </head>
+  <body class="bg-light">
+    <div class="container py-4">
+      <h1>SQL Injection Scanner</h1>
+      <p class="text-danger">
+        ⚠ For localhost testing only. Use against DVWA, bWAPP, etc.
+      </p>
+      <form action="" method="post">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button class="btn btn-primary">Scan</button>
+      </form>
+    </div>
+    <div>
+      {% if results %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Form Action</th>
+            <th>Method</th>
+            <th>Payload</th>
+            <th>Vulnerable?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+          <tr>
+            <th scope="row">{{ result.page }}</th>
+            <td>{{ result.action }}</td>
+            <td>{{ result.method }}</td>
+            <td>{{result.payload}}</td>
+            <td>
+              {% if result.vulnerable %}
+              <span class="badge bg-danger">Yes</span>
+              {% else %}
+              <span class="badge bg-success">No</span>
+              {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %} {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
