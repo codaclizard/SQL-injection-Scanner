@@ -1,4 +1,4 @@
-# SQL-Injection-Scanner
+# SQL-injection-Scanner
 
 
 ## Introduction
@@ -22,3 +22,4 @@ The goal of this tool is to provide an **automated, lightweight, and easy-to-use
    - Differences in response content or length
    - Delays (for time-based injections)
 4. If a vulnerability is found, the tool reports the type, parameter, and payload used.
+
